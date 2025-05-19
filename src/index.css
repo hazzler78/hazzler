@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&family=Audiowide&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-black text-white font-exo;
+  }
+}
+
+@layer components {
+  .neon-text {
+    @apply text-primary drop-shadow-[0_0_8px_rgba(0,207,255,0.5)];
+  }
+  
+  .neon-border {
+    @apply border-primary shadow-[0_0_8px_rgba(0,207,255,0.5)];
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 bg-primary text-black font-orbitron font-bold rounded-lg
+           hover:bg-opacity-90 transition-all duration-300
+           shadow-[0_0_15px_rgba(0,207,255,0.5)]
+           hover:shadow-[0_0_25px_rgba(0,207,255,0.7)];
+  }
+  
+  .section-title {
+    @apply font-orbitron text-3xl md:text-4xl font-bold mb-8 neon-text;
+  }
+}
