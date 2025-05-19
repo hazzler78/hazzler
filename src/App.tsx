@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   MusicalNoteIcon, 
@@ -6,6 +7,14 @@ import {
 } from '@heroicons/react/24/outline';
 
 function App() {
+  const [videoIds, setVideoIds] = useState<string[]>([]);
+
+  useEffect(() => {
+    fetch('/api/latest-youtube')
+      .then(res => res.json())
+      .then(data => setVideoIds(data.videos));
+  }, []);
+
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
@@ -77,18 +86,22 @@ function App() {
         <div className="max-w-6xl mx-auto">
           <h2 className="section-title text-center">Video Gallery</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Replace with actual video embeds */}
-            <div className="aspect-video bg-black/50 rounded-lg overflow-hidden">
-              <iframe
-                src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
-            {/* Add more video embeds as needed */}
+            {videoIds.length > 0 ? (
+              videoIds.map(id => (
+                <div key={id} className="aspect-video bg-black/50 rounded-lg overflow-hidden">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${id}`}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  ></iframe>
+                </div>
+              ))
+            ) : (
+              <div>Loading latest videos...</div>
+            )}
           </div>
         </div>
       </section>
