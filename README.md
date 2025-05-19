@@ -65,7 +65,7 @@ A modern, responsive landing page for the music artist Hazzler, built with React
 - 🎭 Smooth animations with Framer Motion
 - 🔍 SEO optimized
 - 🎵 Spotify integration
-- 📺 Video gallery support
+- 📺 Video gallery support (auto-updating with latest YouTube videos)
 - 🔗 Social media integration
 
 ## Getting Started
@@ -80,6 +80,50 @@ A modern, responsive landing page for the music artist Hazzler, built with React
    npm run dev
    ```
 
+## Deployment (Vercel Recommended)
+
+1. Push your code to GitHub (see repository: https://github.com/hazzler78/hazzler.git)
+2. Go to [Vercel](https://vercel.com/import/git) and import your repo.
+3. Vercel will auto-detect your Vite/React setup and deploy your site.
+4. For serverless functions, place your function files in the `/api` directory (see below).
+
+## Serverless Function: Latest YouTube Videos
+
+- The site uses a serverless function to fetch and display the three latest videos from your YouTube channel.
+- The function fetches the RSS feed from your channel and returns the latest video IDs as JSON.
+- The React app then displays these videos in the Video Gallery section.
+
+### Example serverless function (Vercel):
+
+Create `api/latest-youtube.js`:
+```js
+import { DOMParser } from 'xmldom';
+
+export default async function handler(req, res) {
+  const feedUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCnf8lvUfE1sABg_Nzy-byOg';
+  const response = await fetch(feedUrl);
+  const xml = await response.text();
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xml, 'text/xml');
+  const entries = Array.from(doc.getElementsByTagName('entry')).slice(0, 3);
+
+  const videos = entries.map(entry => {
+    const link = entry.getElementsByTagName('link')[0].getAttribute('href');
+    const videoId = link.split('v=')[1];
+    return videoId;
+  });
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.status(200).json({ videos });
+}
+```
+
+Install the dependency:
+```bash
+npm install xmldom
+```
+
 ## Customization
 
 ### Social Media Links
@@ -91,14 +135,6 @@ Update the following links in `src/App.tsx`:
 - YouTube channel
 - Patreon page
 - Gumroad store
-
-### Spotify Embed
-
-Replace `YOUR_TRACK_ID` in the Spotify iframe with your latest track ID.
-
-### Video Gallery
-
-Add your video embeds by replacing the YouTube iframe src with your video IDs.
 
 ### Colors and Typography
 
