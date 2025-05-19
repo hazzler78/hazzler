@@ -159,7 +159,7 @@ function App() {
               </svg>
             </a>
             <a
-              href="https://instagram.com/YOUR_INSTAGRAM"
+              href="https://www.instagram.com/hazzlermusic/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/70 hover:text-primary transition-colors"
