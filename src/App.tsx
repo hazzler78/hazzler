@@ -114,7 +114,7 @@ function App() {
             Support the journey and get exclusive content
           </p>
           <a
-            href="https://patreon.com/YOUR_PATREON"
+            href="https://patreon.com/hazzler?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-2"
