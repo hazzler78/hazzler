@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { 
   MusicalNoteIcon, 
-  VideoCameraIcon, 
   UserGroupIcon, 
   ShoppingBagIcon 
 } from '@heroicons/react/24/outline';
