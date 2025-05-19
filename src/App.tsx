@@ -179,7 +179,7 @@ function App() {
               </svg>
             </a>
             <a
-              href="https://open.spotify.com/artist/YOUR_SPOTIFY_ID"
+              href="https://open.spotify.com/artist/2A3kRqveR7iDjFFnO8LYWq"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/70 hover:text-primary transition-colors"
