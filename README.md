@@ -1,58 +1,3 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
-
 # Hazzler Landing Page
 
 A modern, responsive landing page for the music artist Hazzler, built with React and Tailwind CSS.
@@ -61,12 +6,14 @@ A modern, responsive landing page for the music artist Hazzler, built with React
 
 - 🎨 Modern, sleek design with neon aesthetics
 - 📱 Fully responsive layout
-- ⚡ Built with React and Tailwind CSS
+- ⚡ Built with React, TypeScript, and Tailwind CSS
 - 🎭 Smooth animations with Framer Motion
-- 🔍 SEO optimized
-- 🎵 Spotify integration
+- 🔍 SEO optimized with structured data (JSON-LD)
+- 🎵 Spotify integration (Hazzler & VOX artist profiles)
+- ✅ Spotify Artist VOX verification ready
 - 📺 Video gallery support (auto-updating with latest YouTube videos)
 - 🔗 Social media integration
+- 🎤 Artist metadata for verification (Mikael Söderberg)
 
 ## Getting Started
 
@@ -97,7 +44,7 @@ A modern, responsive landing page for the music artist Hazzler, built with React
 
 Create `api/latest-youtube.js`:
 ```js
-import { DOMParser } from 'xmldom';
+import { DOMParser } from '@xmldom/xmldom';
 
 export default async function handler(req, res) {
   const feedUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCnf8lvUfE1sABg_Nzy-byOg';
@@ -121,8 +68,24 @@ export default async function handler(req, res) {
 
 Install the dependency:
 ```bash
-npm install xmldom
+npm install @xmldom/xmldom
 ```
+
+## Spotify Artist Verification
+
+The site includes structured metadata for Spotify Artist VOX verification:
+
+- **Artist Information**: Mikael Söderberg (founder)
+- **Email**: hazzler@gmail.com (embedded in structured data to reduce spam)
+- **Spotify Profiles**: 
+  - Hazzler: `https://open.spotify.com/artist/2A3kRqveR7iDjFFnO8LYWq`
+  - VOX: `https://open.spotify.com/artist/7yIOC0oTIb09TLevB2PJLl`
+- **Structured Data**: JSON-LD schema.org MusicGroup format for search engines and Spotify crawlers
+
+All metadata is configured in `index.html` and includes:
+- Meta tags for artist information
+- Schema.org structured data (JSON-LD)
+- Social media links in `sameAs` array
 
 ## Customization
 
@@ -135,6 +98,14 @@ Update the following links in `src/App.tsx`:
 - YouTube channel
 - Patreon page
 - Gumroad store
+
+### Artist Metadata
+
+Update artist information in `index.html`:
+- Artist name and founder information
+- Email address (in structured data)
+- Additional Spotify artist profiles
+- Social media links in the `sameAs` array
 
 ### Colors and Typography
 
@@ -152,4 +123,13 @@ The built files will be in the `dist` directory.
 
 ## License
 
-MIT License - feel free to use this template for your own projects!
+MIT License
+
+## About
+
+**Hazzler** - Creating music daily with AI to awaken listeners spiritually and emotionally. Awaken through sound – the frequency of the future.
+
+- Website: [hazzler.vercel.app](https://hazzler.vercel.app)
+- GitHub: [hazzler78/hazzler](https://github.com/hazzler78/hazzler.git)
+- Artist: Mikael Söderberg
+- Spotify: [Hazzler](https://open.spotify.com/artist/2A3kRqveR7iDjFFnO8LYWq) | [VOX](https://open.spotify.com/artist/7yIOC0oTIb09TLevB2PJLl)
