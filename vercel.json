@@ -1,4 +1,7 @@
 {
+  "rewrites": [
+    { "source": "/terms.html/tiktokhp6CqIZcFjJ8eMOMku0pOD5DUQwFosQS.txt", "destination": "/tiktokhp6CqIZcFjJ8eMOMku0pOD5DUQwFosQS.txt" }
+  ],
   "redirects": [
     { "source": "/terms.html/", "destination": "/terms.html", "permanent": true },
     { "source": "/privacy.html/", "destination": "/privacy.html", "permanent": true }
