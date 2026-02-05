@@ -1,10 +1,9 @@
 {
   "rewrites": [
+    { "source": "/privacy.html/tiktokiQnqHhvH0bU6hYlLRkMqyneaXKjvYAZR.txt", "destination": "/tiktokiQnqHhvH0bU6hYlLRkMqyneaXKjvYAZR.txt" },
+    { "source": "/privacy.html/", "destination": "/privacy.html" },
     { "source": "/terms.html/tiktokAnQIqlgYUaQJhJj5NzMVT2UtH98DPSiJ.txt", "destination": "/tiktokAnQIqlgYUaQJhJj5NzMVT2UtH98DPSiJ.txt" },
     { "source": "/terms.html/tiktokhp6CqIZcFjJ8eMOMku0pOD5DUQwFosQS.txt", "destination": "/tiktokhp6CqIZcFjJ8eMOMku0pOD5DUQwFosQS.txt" },
     { "source": "/terms.html/", "destination": "/terms.html" }
-  ],
-  "redirects": [
-    { "source": "/privacy.html/", "destination": "/privacy.html", "permanent": true }
   ]
 }
