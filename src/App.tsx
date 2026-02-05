@@ -190,6 +190,11 @@ function App() {
             </a>
           </div>
           <p className="text-center text-white/50 mt-8">
+            <a href="/terms.html" className="text-white/60 hover:text-primary transition-colors">Terms of Service</a>
+            {' · '}
+            <a href="/privacy.html" className="text-white/60 hover:text-primary transition-colors">Privacy Policy</a>
+          </p>
+          <p className="text-center text-white/50 mt-2">
             © {new Date().getFullYear()} Hazzler. All rights reserved.
           </p>
         </div>
