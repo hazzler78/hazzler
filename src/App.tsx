@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { PlayIcon } from '@heroicons/react/24/solid';
 import {
   MusicalNoteIcon,
   UserGroupIcon,
@@ -7,13 +8,23 @@ import {
   ArrowUpTrayIcon,
 } from '@heroicons/react/24/outline';
 
+type YoutubeVideo = {
+  id: string;
+  title: string | null;
+  published: string;
+  thumbnail: string;
+};
+
 function App() {
-  const [videoIds, setVideoIds] = useState<string[]>([]);
+  const [videoData, setVideoData] = useState<YoutubeVideo[]>([]);
+  const [videosLoading, setVideosLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/latest-youtube')
-      .then(res => res.json())
-      .then(data => setVideoIds(data.videos));
+      .then((res) => res.json())
+      .then((data) => setVideoData(data.videos || []))
+      .catch(() => setVideoData([]))
+      .finally(() => setVideosLoading(false));
   }, []);
 
   return (
@@ -83,27 +94,60 @@ function App() {
       </section>
 
       {/* Video Gallery Section */}
-      <section className="py-20 px-4 bg-black/50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="section-title text-center">Video Gallery</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {videoIds.length > 0 ? (
-              videoIds.map(id => (
-                <div key={id} className="aspect-video bg-black/50 rounded-lg overflow-hidden">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${id}`}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  ></iframe>
-                </div>
-              ))
-            ) : (
-              <div>Loading latest videos...</div>
-            )}
-          </div>
+      <section className="py-16 bg-black/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-12 tracking-widest text-cyan-400 drop-shadow-neon font-orbitron">
+            LATEST FREQUENCIES
+          </h2>
+
+          {videosLoading ? (
+            <div className="text-center py-12 text-white/70 font-orbitron">
+              Loading latest frequencies...
+            </div>
+          ) : videoData.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {videoData.map((video) => (
+                <motion.a
+                  key={video.id}
+                  href={`https://www.youtube.com/watch?v=${video.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block overflow-hidden rounded-3xl border border-cyan-400/30 bg-black/50 hover:border-cyan-400 transition-all duration-300"
+                  whileHover={{ scale: 1.04, y: -8 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                >
+                  <div className="relative">
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title ?? 'Hazzler video'}
+                      className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
+                      <div className="w-16 h-16 rounded-full border-4 border-white flex items-center justify-center">
+                        <PlayIcon className="w-8 h-8 text-white ml-1" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="text-white font-semibold text-lg leading-tight line-clamp-2 mb-2 font-orbitron">
+                      {video.title ?? 'Video'}
+                    </h3>
+                    <p className="text-cyan-300/80 text-sm">{video.published}</p>
+                  </div>
+
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </motion.a>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 text-gray-400">
+              <p className="text-xl font-orbitron">
+                No videos yet — new frequencies dropping soon 🔥
+              </p>
+            </div>
+          )}
         </div>
       </section>
 

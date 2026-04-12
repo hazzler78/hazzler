@@ -34,6 +34,10 @@
     @apply font-orbitron text-3xl md:text-4xl font-bold mb-8 neon-text;
   }
 
+  .drop-shadow-neon {
+    filter: drop-shadow(0 0 14px rgba(0, 207, 255, 0.55));
+  }
+
   .coming-soon-badge {
     @apply inline-flex items-center justify-center text-xs font-orbitron font-bold uppercase tracking-widest
       px-3 py-1.5 rounded-full border border-primary/55 text-primary bg-primary/10
