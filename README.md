@@ -27,6 +27,10 @@ A modern, responsive landing page for the music artist Hazzler, built with React
    npm run dev
    ```
 
+## Launch Checklist
+
+✅ SEO live — submit https://hazzler.vercel.app/ to Google Search Console + Bing Webmaster Tools
+
 ## Deployment (Vercel Recommended)
 
 1. Push your code to GitHub (see repository: https://github.com/hazzler78/hazzler.git)
