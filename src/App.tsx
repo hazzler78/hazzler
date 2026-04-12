@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  MusicalNoteIcon, 
-  UserGroupIcon, 
-  ShoppingBagIcon 
+import {
+  MusicalNoteIcon,
+  UserGroupIcon,
+  ShoppingBagIcon,
+  ArrowUpTrayIcon,
 } from '@heroicons/react/24/outline';
 
 function App() {
@@ -127,21 +128,55 @@ function App() {
 
       {/* Merch Section */}
       <section className="py-20 px-4 bg-black/50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="section-title">Merch & Products</h2>
-          <p className="text-lg mb-8 text-white/90">
-            Get your hands on exclusive Hazzler merchandise
+        <motion.div
+          className="max-w-4xl mx-auto text-center"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
+          <span className="coming-soon-badge mb-4">Coming Soon</span>
+          <h2 className="section-title">Merch & Products – Dropping Soon 🔥</h2>
+          <p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed">
+            The store is live — first products are landing soon. Bookmark it and be first in line for
+            drops and limited runs.
           </p>
           <a
-            href="https://gumroad.com/YOUR_GUMROAD"
+            href="https://hazzler.gumroad.com"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-2"
           >
             <ShoppingBagIcon className="w-6 h-6" />
-            Shop Now
+            Visit the Store
           </a>
-        </div>
+        </motion.div>
+      </section>
+
+      {/* DistroKid affiliate */}
+      <section className="py-20 px-4 bg-black/30">
+        <motion.div
+          className="max-w-4xl mx-auto text-center"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.05 }}
+        >
+          <h2 className="section-title">Support Hazzler + Upload Your Own Music</h2>
+          <p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed">
+            Use my DistroKid affiliate link and get the best distribution for independent artists.
+            Every signup helps fuel new tracks &amp; future drops.
+          </p>
+          <a
+            href="https://distrokid.com/vip/seven/7237992"
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="btn-primary inline-flex items-center gap-2"
+          >
+            <ArrowUpTrayIcon className="w-6 h-6" />
+            Upload with My Link →
+          </a>
+        </motion.div>
       </section>
 
       {/* Footer */}

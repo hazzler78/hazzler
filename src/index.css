@@ -33,4 +33,21 @@
   .section-title {
     @apply font-orbitron text-3xl md:text-4xl font-bold mb-8 neon-text;
   }
+
+  .coming-soon-badge {
+    @apply inline-flex items-center justify-center text-xs font-orbitron font-bold uppercase tracking-widest
+      px-3 py-1.5 rounded-full border border-primary/55 text-primary bg-primary/10
+      shadow-[0_0_16px_rgba(0,207,255,0.4)];
+    animation: coming-soon-glow 3s ease-in-out infinite;
+  }
+}
+
+@keyframes coming-soon-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 12px rgba(0, 207, 255, 0.35), 0 0 24px rgba(0, 207, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 207, 255, 0.55), 0 0 40px rgba(0, 207, 255, 0.22);
+  }
 }

@@ -9,8 +9,8 @@ A modern, responsive landing page for the music artist Hazzler, built with React
 - ⚡ Built with React, TypeScript, and Tailwind CSS
 - 🎭 Smooth animations with Framer Motion
 - 🔍 SEO optimized with structured data (JSON-LD)
-- 🎵 Spotify integration (Hazzler & VOX artist profiles)
-- ✅ Spotify Artist VOX verification ready
+- 🎵 Spotify integration (Hazzler & VelvetOrionX artist profiles)
+- ✅ Spotify Artist VelvetOrionX verification ready
 - 📺 Video gallery support (auto-updating with latest YouTube videos)
 - 🔗 Social media integration
 - 🎤 Artist metadata for verification (Mikael Söderberg)
@@ -73,13 +73,13 @@ npm install @xmldom/xmldom
 
 ## Spotify Artist Verification
 
-The site includes structured metadata for Spotify Artist VOX verification:
+The site includes structured metadata for Spotify Artist VelvetOrionX verification:
 
 - **Artist Information**: Mikael Söderberg (founder)
 - **Email**: hazzler@gmail.com (embedded in structured data to reduce spam)
 - **Spotify Profiles**: 
   - Hazzler: `https://open.spotify.com/artist/2A3kRqveR7iDjFFnO8LYWq`
-  - VOX: `https://open.spotify.com/artist/7yIOC0oTIb09TLevB2PJLl`
+  - VelvetOrionX: `https://open.spotify.com/artist/29Hv3V1dVlsGzLZCzNVWNZ`
 - **Structured Data**: JSON-LD schema.org MusicGroup format for search engines and Spotify crawlers
 
 All metadata is configured in `index.html` and includes:
@@ -132,4 +132,4 @@ MIT License
 - Website: [hazzler.vercel.app](https://hazzler.vercel.app)
 - GitHub: [hazzler78/hazzler](https://github.com/hazzler78/hazzler.git)
 - Artist: Mikael Söderberg
-- Spotify: [Hazzler](https://open.spotify.com/artist/2A3kRqveR7iDjFFnO8LYWq) | [VOX](https://open.spotify.com/artist/7yIOC0oTIb09TLevB2PJLl)
+- Spotify: [Hazzler](https://open.spotify.com/artist/2A3kRqveR7iDjFFnO8LYWq) | [VelvetOrionX](https://open.spotify.com/artist/29Hv3V1dVlsGzLZCzNVWNZ)
