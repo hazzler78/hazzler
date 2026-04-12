@@ -96,13 +96,13 @@ function App() {
       {/* Video Gallery Section */}
       <section className="py-16 bg-black/30">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-12 tracking-widest text-cyan-400 drop-shadow-neon font-orbitron">
+          <h2 className="text-4xl font-bold text-center mb-12 tracking-widest text-cyan-400 drop-shadow-neon">
             LATEST FREQUENCIES
           </h2>
 
           {videosLoading ? (
-            <div className="text-center py-12 text-white/70 font-orbitron">
-              Loading latest frequencies...
+            <div className="text-center py-12 text-gray-400">
+              <p className="text-xl">Loading latest frequencies...</p>
             </div>
           ) : videoData.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -116,13 +116,15 @@ function App() {
                   whileHover={{ scale: 1.04, y: -8 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
+                  {/* Thumbnail */}
                   <div className="relative">
                     <img
                       src={video.thumbnail}
-                      alt={video.title ?? 'Hazzler video'}
+                      alt={video.title ?? ''}
                       className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
+                    {/* Play overlay */}
                     <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
                       <div className="w-16 h-16 rounded-full border-4 border-white flex items-center justify-center">
                         <PlayIcon className="w-8 h-8 text-white ml-1" />
@@ -130,22 +132,22 @@ function App() {
                     </div>
                   </div>
 
+                  {/* Info */}
                   <div className="p-6">
-                    <h3 className="text-white font-semibold text-lg leading-tight line-clamp-2 mb-2 font-orbitron">
+                    <h3 className="text-white font-semibold text-lg leading-tight line-clamp-2 mb-2">
                       {video.title ?? 'Video'}
                     </h3>
                     <p className="text-cyan-300/80 text-sm">{video.published}</p>
                   </div>
 
+                  {/* Neon bottom glow */}
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </motion.a>
               ))}
             </div>
           ) : (
             <div className="text-center py-12 text-gray-400">
-              <p className="text-xl font-orbitron">
-                No videos yet — new frequencies dropping soon 🔥
-              </p>
+              <p className="text-xl">No videos yet — new frequencies dropping soon 🔥</p>
             </div>
           )}
         </div>

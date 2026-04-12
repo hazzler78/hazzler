@@ -12,32 +12,44 @@ export default async function handler(req, res) {
 
     const entries = Array.from(doc.getElementsByTagName('entry')).slice(0, 3);
 
-    const videos = entries.map((entry) => {
-      const link = entry.getElementsByTagName('link')[0].getAttribute('href');
-      const videoId = link.split('v=')[1];
+    const videos = entries
+      .map((entry) => {
+        const linkEl = entry.getElementsByTagName('link')[0];
+        const href = linkEl ? linkEl.getAttribute('href') : '';
+        const fromQuery = href.match(/[?&]v=([^&]+)/);
+        const ytIdEl = entry.getElementsByTagName('yt:videoId')[0];
+        const videoId =
+          (ytIdEl && ytIdEl.textContent && ytIdEl.textContent.trim()) ||
+          (fromQuery && fromQuery[1]);
 
-      const title = entry.getElementsByTagName('title')[0].textContent;
-      const published = entry.getElementsByTagName('published')[0].textContent;
+        if (!videoId) return null;
 
-      // Construct high-quality thumbnail (no extra parsing needed)
-      const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+        const titleEl = entry.getElementsByTagName('title')[0];
+        const publishedEl = entry.getElementsByTagName('published')[0];
+        const title = titleEl ? titleEl.textContent : null;
+        const published = publishedEl ? publishedEl.textContent : null;
 
-      return {
-        id: videoId,
-        title,
-        published: new Date(published).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-        }),
-        thumbnail,
-      };
-    });
+        const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+        return {
+          id: videoId,
+          title,
+          published: published
+            ? new Date(published).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })
+            : '',
+          thumbnail,
+        };
+      })
+      .filter(Boolean);
 
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.status(200).json({ videos });
   } catch (error) {
     console.error('YouTube RSS error:', error);
-    res.status(200).json({ videos: [] }); // graceful fallback
+    res.status(200).json({ videos: [] });
   }
 }
