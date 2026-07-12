@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { PlayIcon } from '@heroicons/react/24/solid';
 import {
   MusicalNoteIcon,
@@ -16,6 +16,13 @@ type YoutubeVideo = {
 };
 
 function App() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const videoY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+
   const [videoData, setVideoData] = useState<YoutubeVideo[]>([]);
   const [videosLoading, setVideosLoading] = useState(true);
 
@@ -30,10 +37,14 @@ function App() {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-20 relative overflow-hidden">
-        {/* Video Background */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover opacity-30 blur-sm brightness-75 pointer-events-none"
+      <section
+        ref={heroRef}
+        className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-20 relative overflow-hidden"
+      >
+        {/* Video Background with scroll parallax */}
+        <motion.video
+          style={{ y: videoY }}
+          className="absolute inset-x-0 -top-[15%] w-full h-[130%] object-cover opacity-30 blur-sm brightness-75 pointer-events-none will-change-transform"
           src="/hero.mp4"
           autoPlay
           loop
