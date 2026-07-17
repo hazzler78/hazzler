@@ -1,10 +1,30 @@
 {
+  "headers": [
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/privacy.html/tiktokiQnqHhvH0bU6hYlLRkMqyneaXKjvYAZR.txt", "destination": "/tiktokiQnqHhvH0bU6hYlLRkMqyneaXKjvYAZR.txt" },
     { "source": "/privacy.html/", "destination": "/privacy.html" },
     { "source": "/terms.html/tiktokAnQIqlgYUaQJhJj5NzMVT2UtH98DPSiJ.txt", "destination": "/tiktokAnQIqlgYUaQJhJj5NzMVT2UtH98DPSiJ.txt" },
     { "source": "/terms.html/tiktokhp6CqIZcFjJ8eMOMku0pOD5DUQwFosQS.txt", "destination": "/tiktokhp6CqIZcFjJ8eMOMku0pOD5DUQwFosQS.txt" },
     { "source": "/terms.html/", "destination": "/terms.html" },
-    { "source": "/((?!terms\\.html|privacy\\.html|callback\\.html|favicon\\.svg|og-image\\.png|sitemap\\.xml|api/|media/|tiktok|google|robots).*)", "destination": "/index.html" }
+    {
+      "source": "/((?!api/|media/)(?!.*\\.).*)",
+      "destination": "/index.html"
+    }
   ]
 }
