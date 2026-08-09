@@ -6,7 +6,12 @@ import {
   UserGroupIcon,
   ShoppingBagIcon,
   ArrowUpTrayIcon,
+  PlayCircleIcon,
 } from '@heroicons/react/24/outline';
+import Nav from './components/Nav';
+import EmailSignup from './components/EmailSignup';
+import MobileStickyCta from './components/MobileStickyCta';
+import { AFFILIATE_REL, EXTERNAL_REL, LINKS } from './constants';
 
 type YoutubeVideo = {
   id: string;
@@ -28,10 +33,14 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black">
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-20 relative overflow-hidden">
-        {/* Static video background — no scroll transforms (avoids jank) */}
+    <div className="min-h-screen bg-black pb-20 md:pb-0">
+      <Nav />
+
+      {/* Hero */}
+      <section
+        id="home"
+        className="min-h-[100svh] flex flex-col items-center justify-center text-center px-4 pt-20 pb-24 relative overflow-hidden"
+      >
         <video
           className="absolute inset-0 w-full h-full object-cover opacity-40 brightness-90 pointer-events-none"
           src="/hero.mp4"
@@ -41,104 +50,165 @@ function App() {
           playsInline
           preload="metadata"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-black pointer-events-none" />
 
         <motion.div
-          className="relative z-10"
+          className="relative z-10 w-full max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="font-audiowide text-6xl md:text-8xl mb-6 neon-text animate-neon-pulse">
+          <h1 className="font-audiowide text-6xl md:text-8xl mb-4 neon-text animate-neon-pulse">
             HAZZLER
           </h1>
-          <p className="font-orbitron text-xl md:text-2xl mb-12 text-white/90">
-            Awaken through sound – the frequency of the future.
+          <p className="font-orbitron text-lg md:text-2xl mb-3 text-white/95 leading-snug">
+            Daily AI frequencies to awaken your mind — press play and feel it.
           </p>
-          <a
-            href="https://open.spotify.com/artist/2A3kRqveR7iDjFFnO8LYWq"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center gap-2"
-          >
-            <MusicalNoteIcon className="w-6 h-6" />
-            Listen Now
-          </a>
+          <p className="text-sm md:text-base text-white/60 mb-8 tracking-wide">
+            Independent AI-music artist · Spiritual electronic · New drops daily
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mb-2">
+            <a
+              href={LINKS.spotify}
+              target="_blank"
+              rel={EXTERNAL_REL}
+              className="btn-primary inline-flex items-center justify-center gap-2"
+            >
+              <MusicalNoteIcon className="w-6 h-6" />
+              Listen on Spotify
+            </a>
+            <a
+              href="#videos"
+              className="btn-secondary inline-flex items-center justify-center gap-2"
+            >
+              <PlayCircleIcon className="w-6 h-6" />
+              Watch Videos
+            </a>
+          </div>
+
+          <EmailSignup variant="hero" />
         </motion.div>
       </section>
 
-      {/* About Section */}
-      <section className="py-20 px-4 bg-black/50">
+      {/* Latest Release — high on page for conversion */}
+      <section id="music" className="py-16 md:py-20 px-4 bg-black relative">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         <div className="max-w-4xl mx-auto">
-          <h2 className="section-title text-center">About</h2>
-          <p className="text-lg md:text-xl text-center text-white/90 leading-relaxed">
-            I&apos;m Hazzler – each day I create music with AI. Each song is a coded frequency
-            designed to awaken and remind you of your true potential. Welcome to the journey.
-          </p>
-        </div>
-      </section>
-
-      {/* Latest Release Section */}
-      <section className="py-20 px-4 bg-black/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="section-title text-center">Latest Release</h2>
-          <div className="bg-black/50 rounded-lg overflow-hidden">
+          <div className="text-center mb-8">
+            <p className="font-orbitron text-xs uppercase tracking-[0.22em] text-primary/80 mb-3">
+              Stream now
+            </p>
+            <h2 className="section-title mb-3">Latest Release</h2>
+            <p className="text-white/70 max-w-xl mx-auto">
+              Hit play — the newest Hazzler frequencies are live on Spotify.
+            </p>
+          </div>
+          <div className="rounded-2xl overflow-hidden border border-primary/25 shadow-[0_0_40px_rgba(0,207,255,0.15)] bg-black/50">
             <iframe
-              src="https://open.spotify.com/embed/artist/2A3kRqveR7iDjFFnO8LYWq"
+              src={LINKS.spotifyEmbed}
               width="100%"
               height="352"
-              frameBorder="0"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
               title="Hazzler on Spotify"
-              className="rounded-lg w-full"
+              className="rounded-2xl w-full"
             />
+          </div>
+          <div className="mt-6 text-center">
+            <a
+              href={LINKS.spotify}
+              target="_blank"
+              rel={EXTERNAL_REL}
+              className="btn-primary inline-flex items-center gap-2"
+            >
+              <MusicalNoteIcon className="w-5 h-5" />
+              Open full catalog on Spotify
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Video Gallery Section */}
-      <section className="py-16 bg-black/30">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-12 tracking-widest text-cyan-400 drop-shadow-neon">
-            LATEST FREQUENCIES
-          </h2>
+      {/* About + email capture */}
+      <section id="about" className="py-16 md:py-20 px-4 bg-black/50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="section-title text-center">About</h2>
+          <p className="text-lg md:text-xl text-center text-white/90 leading-relaxed mb-6">
+            I&apos;m Hazzler – each day I create music with AI. Each song is a coded frequency
+            designed to awaken and remind you of your true potential. Welcome to the journey.
+          </p>
+          <blockquote className="text-center max-w-2xl mx-auto mb-10 border-l-2 border-primary/50 pl-4 md:pl-6">
+            <p className="font-orbitron text-base md:text-lg text-primary/90 italic leading-relaxed">
+              “Music isn&apos;t entertainment — it&apos;s a transmission.”
+            </p>
+          </blockquote>
+          <div className="flex flex-wrap justify-center gap-3 mb-10 text-xs md:text-sm font-orbitron uppercase tracking-wider text-white/55">
+            <span className="px-3 py-1.5 rounded-full border border-white/15">Daily AI frequencies</span>
+            <span className="px-3 py-1.5 rounded-full border border-white/15">Independent artist</span>
+            <span className="px-3 py-1.5 rounded-full border border-white/15">Spotify · YouTube · TikTok</span>
+          </div>
+          <EmailSignup variant="section" id="join" />
+        </div>
+      </section>
+
+      {/* Video Gallery */}
+      <section id="videos" className="py-16 md:py-20 bg-black/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-10 md:mb-12">
+            <p className="font-orbitron text-xs uppercase tracking-[0.22em] text-primary/80 mb-3">
+              Visual transmissions
+            </p>
+            <h2 className="section-title mb-3">Latest Frequencies</h2>
+            <p className="text-white/70 max-w-xl mx-auto">
+              Fresh visuals from the lab — tap in and watch on YouTube.
+            </p>
+          </div>
 
           {videosLoading ? (
             <div className="text-center py-12 text-gray-400">
               <p className="text-xl">Loading latest frequencies...</p>
             </div>
           ) : videoData.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {videoData.map((video) => (
-                <a
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {videoData.map((video, index) => (
+                <motion.a
                   key={video.id}
                   href={`https://www.youtube.com/watch?v=${video.id}`}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative block overflow-hidden rounded-3xl border border-cyan-400/30 bg-black/50 hover:border-cyan-400 transition-colors duration-300"
+                  rel={EXTERNAL_REL}
+                  className="group relative block overflow-hidden rounded-2xl border border-cyan-400/30 bg-black/50 hover:border-cyan-400 hover:shadow-[0_0_28px_rgba(0,207,255,0.25)] transition-all duration-300"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.45, delay: index * 0.08 }}
                 >
-                  <div className="relative">
+                  <div className="relative overflow-hidden">
                     <img
-                      src={video.thumbnail}
-                      alt={video.title ?? ''}
+                      src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+                      alt={video.title ?? 'Hazzler video'}
                       className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.src = video.thumbnail;
+                      }}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
-                      <div className="w-16 h-16 rounded-full border-4 border-white flex items-center justify-center">
-                        <PlayIcon className="w-8 h-8 text-white ml-1" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/45 group-hover:bg-black/25 transition-colors">
+                      <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-primary bg-black/40 flex items-center justify-center shadow-[0_0_20px_rgba(0,207,255,0.45)] group-hover:scale-110 transition-transform">
+                        <PlayIcon className="w-7 h-7 md:w-8 md:h-8 text-primary ml-0.5" />
                       </div>
+                      <span className="font-orbitron text-[11px] md:text-xs uppercase tracking-[0.18em] text-white bg-black/55 border border-primary/40 px-3 py-1.5 rounded-full opacity-90 group-hover:opacity-100">
+                        Watch on YouTube
+                      </span>
                     </div>
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="text-white font-semibold text-lg leading-tight line-clamp-2 mb-2">
+                  <div className="p-5 md:p-6">
+                    <h3 className="text-white font-semibold text-base md:text-lg leading-tight line-clamp-2 mb-2 group-hover:text-primary transition-colors">
                       {video.title ?? 'Video'}
                     </h3>
                     <p className="text-cyan-300/80 text-sm">{video.published}</p>
                   </div>
-                </a>
+                </motion.a>
               ))}
             </div>
           ) : (
@@ -146,20 +216,32 @@ function App() {
               <p className="text-xl">No videos yet — new frequencies dropping soon.</p>
             </div>
           )}
+
+          <div className="mt-10 text-center">
+            <a
+              href={LINKS.youtube}
+              target="_blank"
+              rel={EXTERNAL_REL}
+              className="btn-secondary inline-flex items-center gap-2"
+            >
+              <PlayCircleIcon className="w-5 h-5" />
+              More on YouTube
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Community Section */}
-      <section className="py-20 px-4 bg-black/30">
+      {/* Community */}
+      <section className="py-16 md:py-20 px-4 bg-black/30">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="section-title">Join the Community</h2>
           <p className="text-lg mb-8 text-white/90">
-            Support the journey and get exclusive content
+            Support the journey and unlock exclusive behind-the-scenes frequencies.
           </p>
           <a
-            href="https://patreon.com/hazzler?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+            href={LINKS.patreon}
             target="_blank"
-            rel="noopener noreferrer"
+            rel={EXTERNAL_REL}
             className="btn-primary inline-flex items-center gap-2"
           >
             <UserGroupIcon className="w-6 h-6" />
@@ -168,8 +250,8 @@ function App() {
         </div>
       </section>
 
-      {/* Merch Section */}
-      <section className="py-20 px-4 bg-black/50">
+      {/* Merch */}
+      <section className="py-16 md:py-20 px-4 bg-black/50">
         <div className="max-w-4xl mx-auto text-center">
           <span className="coming-soon-badge mb-4">Coming Soon</span>
           <h2 className="section-title">Merch & Products – Dropping Soon</h2>
@@ -178,9 +260,9 @@ function App() {
             drops and limited runs.
           </p>
           <a
-            href="https://hazzler.gumroad.com"
+            href={LINKS.gumroad}
             target="_blank"
-            rel="noopener noreferrer"
+            rel={EXTERNAL_REL}
             className="btn-primary inline-flex items-center gap-2"
           >
             <ShoppingBagIcon className="w-6 h-6" />
@@ -189,8 +271,8 @@ function App() {
         </div>
       </section>
 
-      {/* DistroKid affiliate */}
-      <section className="py-20 px-4 bg-black/30">
+      {/* DistroKid */}
+      <section className="py-16 md:py-20 px-4 bg-black/30">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="section-title">Support Hazzler + Upload Your Own Music</h2>
           <p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed">
@@ -198,9 +280,9 @@ function App() {
             Every signup helps fuel new tracks &amp; future drops.
           </p>
           <a
-            href="https://distrokid.com/vip/seven/7237992"
+            href={LINKS.distrokid}
             target="_blank"
-            rel="noopener noreferrer sponsored"
+            rel={AFFILIATE_REL}
             className="btn-primary inline-flex items-center gap-2"
           >
             <ArrowUpTrayIcon className="w-6 h-6" />
@@ -210,13 +292,13 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 bg-black/80">
+      <footer className="py-10 px-4 bg-black/90 border-t border-white/10">
         <div className="max-w-4xl mx-auto">
-          <div className="flex justify-center space-x-8">
+          <div className="flex justify-center space-x-7 mb-6">
             <a
-              href="https://www.tiktok.com/@hazzler"
+              href={LINKS.tiktok}
               target="_blank"
-              rel="noopener noreferrer"
+              rel={EXTERNAL_REL}
               className="text-white/70 hover:text-primary transition-colors"
               aria-label="TikTok"
             >
@@ -225,9 +307,9 @@ function App() {
               </svg>
             </a>
             <a
-              href="https://www.instagram.com/hazzlermusic/"
+              href={LINKS.instagram}
               target="_blank"
-              rel="noopener noreferrer"
+              rel={EXTERNAL_REL}
               className="text-white/70 hover:text-primary transition-colors"
               aria-label="Instagram"
             >
@@ -236,9 +318,9 @@ function App() {
               </svg>
             </a>
             <a
-              href="https://www.youtube.com/channel/UCnf8lvUfE1sABg_Nzy-byOg"
+              href={LINKS.youtube}
               target="_blank"
-              rel="noopener noreferrer"
+              rel={EXTERNAL_REL}
               className="text-white/70 hover:text-primary transition-colors"
               aria-label="YouTube"
             >
@@ -247,9 +329,9 @@ function App() {
               </svg>
             </a>
             <a
-              href="https://open.spotify.com/artist/2A3kRqveR7iDjFFnO8LYWq"
+              href={LINKS.spotify}
               target="_blank"
-              rel="noopener noreferrer"
+              rel={EXTERNAL_REL}
               className="text-white/70 hover:text-primary transition-colors"
               aria-label="Spotify"
             >
@@ -258,20 +340,22 @@ function App() {
               </svg>
             </a>
           </div>
-          <p className="text-center text-white/50 mt-8">
-            <a href="/terms.html" className="text-white/60 hover:text-primary transition-colors">
+          <p className="text-center text-white/50 text-sm">
+            <a href="/terms.html" className="hover:text-primary transition-colors">
               Terms of Service
             </a>
             {' · '}
-            <a href="/privacy.html" className="text-white/60 hover:text-primary transition-colors">
+            <a href="/privacy.html" className="hover:text-primary transition-colors">
               Privacy Policy
             </a>
           </p>
-          <p className="text-center text-white/50 mt-2">
+          <p className="text-center text-white/40 text-sm mt-2">
             © {new Date().getFullYear()} Hazzler. All rights reserved.
           </p>
         </div>
       </footer>
+
+      <MobileStickyCta />
     </div>
   );
 }

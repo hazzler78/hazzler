@@ -5,15 +5,34 @@ A modern, responsive landing page for the music artist Hazzler, built with React
 ## Features
 
 - 🎨 Modern, sleek design with neon aesthetics
-- 📱 Fully responsive layout
+- 📱 Fully responsive layout (mobile-first CTAs for TikTok/Instagram traffic)
 - ⚡ Built with React, TypeScript, and Tailwind CSS
 - 🎭 Smooth animations with Framer Motion
 - 🔍 SEO optimized with structured data (JSON-LD)
 - 🎵 Spotify integration (Hazzler & VelvetOrionX artist profiles)
 - ✅ Spotify Artist VelvetOrionX verification ready
 - 📺 Video gallery support (auto-updating with latest YouTube videos)
+- ✉️ Email signup funnel (`/api/subscribe`) for early drops
 - 🔗 Social media integration
 - 🎤 Artist metadata for verification (Mikael Söderberg)
+
+## Email signup setup
+
+The site posts name + email to `/api/subscribe`. Configure **one** of these env vars in Vercel:
+
+| Variable | Purpose |
+|---|---|
+| `BUTTONDOWN_API_KEY` | Preferred — adds subscribers via [Buttondown](https://buttondown.email) |
+| `NEWSLETTER_WEBHOOK_URL` | Fallback — POSTs `{ email, name, source, timestamp }` to Zapier/Make/n8n |
+
+Without either variable, the form returns a friendly “not configured” error.
+
+```bash
+# Vercel project settings → Environment Variables
+BUTTONDOWN_API_KEY=your_token_here
+# or
+NEWSLETTER_WEBHOOK_URL=https://hooks.zapier.com/...
+```
 
 ## Getting Started
 
