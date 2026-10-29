@@ -62,10 +62,10 @@ function App() {
             HAZZLER
           </h1>
           <p className="font-orbitron text-lg md:text-2xl mb-3 text-white/95 leading-snug">
-            Daily AI frequencies to awaken your mind — press play and feel it.
+            Swedish deep house &amp; electronic pop — press play and feel it.
           </p>
           <p className="text-sm md:text-base text-white/60 mb-8 tracking-wide">
-            Independent AI-music artist · Spiritual electronic · New drops daily
+            Independent artist from Sweden · Deep house · Electronic pop
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mb-2">
@@ -132,10 +132,16 @@ function App() {
       {/* About + email capture */}
       <section id="about" className="py-16 md:py-20 px-4 bg-black/50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="section-title text-center">About</h2>
+          <div className="text-center mb-8">
+            <p className="font-orbitron text-xs uppercase tracking-[0.22em] text-primary/80 mb-3">
+              The artist
+            </p>
+            <h2 className="section-title mb-0">About</h2>
+          </div>
           <p className="text-lg md:text-xl text-center text-white/90 leading-relaxed mb-6">
-            I&apos;m Hazzler – each day I create music with AI. Each song is a coded frequency
-            designed to awaken and remind you of your true potential. Welcome to the journey.
+            I&apos;m Hazzler — a Swedish artist making deep house and electronic pop, built with AI
+            and finished by hand. Every track is a frequency meant to lift you up and remind you of
+            your true potential. Welcome to the journey.
           </p>
           <blockquote className="text-center max-w-2xl mx-auto mb-10 border-l-2 border-primary/50 pl-4 md:pl-6">
             <p className="font-orbitron text-base md:text-lg text-primary/90 italic leading-relaxed">
@@ -143,8 +149,8 @@ function App() {
             </p>
           </blockquote>
           <div className="flex flex-wrap justify-center gap-3 mb-10 text-xs md:text-sm font-orbitron uppercase tracking-wider text-white/55">
-            <span className="px-3 py-1.5 rounded-full border border-white/15">Daily AI frequencies</span>
-            <span className="px-3 py-1.5 rounded-full border border-white/15">Independent artist</span>
+            <span className="px-3 py-1.5 rounded-full border border-white/15">Deep house · Electronic pop</span>
+            <span className="px-3 py-1.5 rounded-full border border-white/15">Independent · Sweden</span>
             <span className="px-3 py-1.5 rounded-full border border-white/15">Spotify · YouTube · TikTok</span>
           </div>
           <EmailSignup variant="section" id="join" />
@@ -165,8 +171,16 @@ function App() {
           </div>
 
           {videosLoading ? (
-            <div className="text-center py-12 text-gray-400">
-              <p className="text-xl">Loading latest frequencies...</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" aria-busy="true" aria-label="Loading videos">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="rounded-2xl border border-cyan-400/20 bg-black/50 overflow-hidden animate-pulse">
+                  <div className="w-full aspect-video bg-white/5" />
+                  <div className="p-5 md:p-6 space-y-3">
+                    <div className="h-4 bg-white/10 rounded w-3/4" />
+                    <div className="h-3 bg-white/5 rounded w-1/3" />
+                  </div>
+                </div>
+              ))}
             </div>
           ) : videoData.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
@@ -212,8 +226,9 @@ function App() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 text-gray-400">
-              <p className="text-xl">No videos yet — new frequencies dropping soon.</p>
+            <div className="text-center py-12 px-6 rounded-2xl border border-white/10 bg-black/40">
+              <p className="font-orbitron text-lg text-white/80 mb-2">Videos are on YouTube</p>
+              <p className="text-white/55">Couldn&apos;t load the latest videos here — catch them all on the channel.</p>
             </div>
           )}
 
@@ -234,8 +249,11 @@ function App() {
       {/* Community */}
       <section className="py-16 md:py-20 px-4 bg-black/30">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="section-title">Join the Community</h2>
-          <p className="text-lg mb-8 text-white/90">
+          <p className="font-orbitron text-xs uppercase tracking-[0.22em] text-primary/80 mb-3">
+            Inner circle
+          </p>
+          <h2 className="section-title mb-3">Join the Community</h2>
+          <p className="text-lg mb-8 text-white/80 max-w-2xl mx-auto leading-relaxed">
             Support the journey and unlock exclusive behind-the-scenes frequencies.
           </p>
           <a
@@ -253,12 +271,13 @@ function App() {
       {/* Merch */}
       <section className="py-16 md:py-20 px-4 bg-black/50">
         <div className="max-w-4xl mx-auto text-center">
-          <span className="coming-soon-badge mb-4">Coming Soon</span>
-          <h2 className="section-title">Merch & Products – Dropping Soon</h2>
-          <p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed">
-            The store is live — first products are landing soon. Bookmark it and be first in line for
-            drops and limited runs.
-          </p>
+          <div className="rounded-2xl border border-primary/25 bg-gradient-to-b from-primary/10 to-transparent px-6 py-10 md:px-12 shadow-[0_0_40px_rgba(0,207,255,0.08)]">
+            <span className="coming-soon-badge mb-4">Coming Soon</span>
+            <h2 className="section-title mb-3">Merch &amp; Products</h2>
+            <p className="text-lg mb-8 text-white/80 max-w-2xl mx-auto leading-relaxed">
+              The Hazzler store is open and the first drops are on the way. Follow along to be first
+              in line for limited runs.
+            </p>
           <a
             href={LINKS.gumroad}
             target="_blank"
@@ -268,16 +287,20 @@ function App() {
             <ShoppingBagIcon className="w-6 h-6" />
             Visit the Store
           </a>
+          </div>
         </div>
       </section>
 
       {/* DistroKid */}
       <section className="py-16 md:py-20 px-4 bg-black/30">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="section-title">Support Hazzler + Upload Your Own Music</h2>
-          <p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed">
-            Use my DistroKid affiliate link and get the best distribution for independent artists.
-            Every signup helps fuel new tracks &amp; future drops.
+          <p className="font-orbitron text-xs uppercase tracking-[0.22em] text-primary/80 mb-3">
+            For artists
+          </p>
+          <h2 className="section-title mb-3">Release Your Own Music</h2>
+          <p className="text-lg mb-8 text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Hazzler releases through DistroKid. Signing up with my link supports new tracks at no extra
+            cost to you.
           </p>
           <a
             href={LINKS.distrokid}
@@ -286,7 +309,7 @@ function App() {
             className="btn-primary inline-flex items-center gap-2"
           >
             <ArrowUpTrayIcon className="w-6 h-6" />
-            Upload with My Link →
+            Try DistroKid
           </a>
         </div>
       </section>
@@ -294,7 +317,7 @@ function App() {
       {/* Footer */}
       <footer className="py-10 px-4 bg-black/90 border-t border-white/10">
         <div className="max-w-4xl mx-auto">
-          <div className="flex justify-center space-x-7 mb-6">
+          <div className="flex justify-center gap-7 mb-6">
             <a
               href={LINKS.tiktok}
               target="_blank"
@@ -350,7 +373,7 @@ function App() {
             </a>
           </p>
           <p className="text-center text-white/40 text-sm mt-2">
-            © {new Date().getFullYear()} Hazzler. All rights reserved.
+            © {Math.max(new Date().getFullYear(), 2026)} Hazzler. All rights reserved.
           </p>
         </div>
       </footer>
