@@ -14,7 +14,7 @@ A modern, responsive landing page for the music artist Hazzler, built with React
 - 📺 Video gallery support (auto-updating with latest YouTube videos)
 - ✉️ Email signup funnel (`/api/subscribe`) for early drops
 - 🔗 Social media integration
-- 🎤 Artist metadata for verification (Mikael Söderberg)
+- 🎤 Artist metadata for verification (Mikael Gustavsson)
 
 ## Email signup setup
 
@@ -98,7 +98,7 @@ npm install @xmldom/xmldom
 
 The site includes structured metadata for Spotify Artist VelvetOrionX verification:
 
-- **Artist Information**: Mikael Söderberg (founder)
+- **Artist Information**: Mikael Gustavsson (founder)
 - **Email**: hazzler@gmail.com (embedded in structured data to reduce spam)
 - **Spotify Profiles**: 
   - Hazzler: `https://open.spotify.com/artist/2A3kRqveR7iDjFFnO8LYWq`
@@ -154,5 +154,5 @@ MIT License
 
 - Website: [hazzler.vercel.app](https://hazzler.vercel.app)
 - GitHub: [hazzler78/hazzler](https://github.com/hazzler78/hazzler.git)
-- Artist: Mikael Söderberg
+- Artist: Mikael Gustavsson
 - Spotify: [Hazzler](https://open.spotify.com/artist/2A3kRqveR7iDjFFnO8LYWq) | [VelvetOrionX](https://open.spotify.com/artist/29Hv3V1dVlsGzLZCzNVWNZ)
